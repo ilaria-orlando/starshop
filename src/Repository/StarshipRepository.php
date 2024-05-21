@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\Model\Starship;
@@ -11,13 +12,11 @@ class StarshipRepository
     {
     }
 
-    public function findAll(): array 
+    public function findAll(): array
     {
-
         $this->logger->info('Starship collection retreived');
 
         return [
-            
             new Starship(
                 1,
                 'USS LeafyCruiser (NCC-0001)',
@@ -39,14 +38,13 @@ class StarshipRepository
                 'Kathryn Journeyway',
                 StarshipStatusEnum::WAITING,
             ),
-
         ];
     }
 
-    //function to fetch single starship and to return null if no id is matched
+    // function to fetch single starship and to return null if no id is matched
     public function find(int $id): ?Starship
     {
-        foreach($this->findAll() as $starship){
+        foreach ($this->findAll() as $starship) {
             if ($starship->getId() === $id) {
                 return $starship;
             }

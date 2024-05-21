@@ -4,12 +4,11 @@ namespace App\Controller;
 
 use App\Model\Starship;
 use App\Repository\StarshipRepository;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-//tell the controller that every route should be this route
+// tell the controller that every route should be this route
 #[Route('/api/starships')]
 class StarshipApiController extends AbstractController
 {
@@ -21,14 +20,14 @@ class StarshipApiController extends AbstractController
         return $this->json($starships);
     }
 
-    //route to fetch single object \d+ is added so route only matches when integer
-    #[Route('/{id<\d+>}', methods:['GET'])]
+    // route to fetch single object \d+ is added so route only matches when integer
+    #[Route('/{id<\d+>}', methods: ['GET'])]
     public function get(int $id, StarshipRepository $repository): Response
     {
         $starship = $repository->find($id);
 
-        //throw 404 if there is no starship found with that id in database
-        if(!$starship){
+        // throw 404 if there is no starship found with that id in database
+        if (!$starship) {
             throw $this->createNotFoundException('Starship not found!');
         }
 
